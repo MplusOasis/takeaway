@@ -1,0 +1,41 @@
+{
+  "name": "campus-takeaway",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "校园外卖平台（PC Web）· React 18 + TypeScript + Tailwind + Vite / Express + SQLite",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:server": "npm run dev -w server",
+    "dev:client": "npm run dev -w client",
+    "build": "npm run build -w client",
+    "typecheck": "tsc -p server/tsconfig.json --noEmit && tsc -p client/tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "verify": "npm run typecheck && npm run lint",
+    "test": "vitest run server/tests",
+    "test:server": "vitest run server/tests",
+    "test:e2e": "vitest run e2e",
+    "ui-check": "node scripts/ui-check.mjs",
+    "db:reset": "npm run db:reset -w server",
+    "start": "npm run start -w server"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.14.0",
+    "playwright-core": "^1.65.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1",
+    "vitest": "^2.1.8"
+  }
+}

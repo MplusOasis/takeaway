@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>校园外卖平台 · 项目结构说明</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@700&family=Instrument+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: oklch(97.6% 0.011 88);
+        --paper-2: oklch(96.5% 0.02 160);
+        --paper-3: oklch(93% 0.036 160);
+        --ink: oklch(21% 0.025 170);
+        --ink-2: oklch(31% 0.02 170);
+        --muted: oklch(49% 0.024 165);
+        --rule: oklch(86.5% 0.022 140);
+        --accent: oklch(50% 0.13 160);
+        --accent-deep: oklch(42% 0.11 162);
+        --accent-soft: oklch(88% 0.08 160);
+        --glint: oklch(100% 0 0);
+        --tint-a: oklch(87.5% 0.058 64);
+        --tint-b: oklch(86.5% 0.075 160);
+        --tint-c: oklch(87% 0.048 210);
+        --tint-d: oklch(84% 0.045 270);
+        --display: 'Schibsted Grotesk', ui-sans-serif, system-ui, sans-serif;
+        --body: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+        --mono: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--ink);
+        background-color: var(--paper);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23f)' opacity='0.05'/%3E%3C/svg%3E");
+      }
+
+      ::selection { background: var(--accent-soft); }
+
+      h1, h2, h3 { font-family: var(--display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin: 0; }
+
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px 96px; }
+
+      /* ---------- 头部：墨带 ---------- */
+      .hero {
+        background: var(--ink);
+        color: var(--paper);
+        padding: 52px 0 46px;
+        margin-bottom: 34px;
+      }
+      .hero .wrap { padding-bottom: 0; }
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent-soft);
+        margin: 0 0 14px;
+      }
+      .hero h1 { font-size: clamp(30px, 4.4vw, 46px); }
+      .hero p.lead { margin: 16px 0 0; max-width: 640px; color: oklch(88% 0.02 160); font-size: 15px; }
+      .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+      .stat {
+        border: 1px solid oklch(38% 0.03 165);
+        border-radius: 10px;
+        padding: 8px 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: oklch(92% 0.02 160);
+      }
+      .stat b { color: var(--accent-soft); font-weight: 500; }
+
+      /* ---------- 通用块 ---------- */
+      section { margin-top: 44px; }
+      .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 16px; }
+      .section-head h2 { font-size: 24px; }
+      .section-head .idx {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        padding: 2px 9px;
+      }
+      .hint { color: var(--muted); font-size: 13px; margin: 0 0 16px; max-width: 760px; }
+
+      .card {
+        background: color-mix(in oklab, var(--glint) 72%, var(--paper));
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        padding: 22px 24px;
+        box-shadow: 0 1px 2px oklch(30% 0.03 165 / 0.07), 0 24px 48px -30px oklch(40% 0.08 165 / 0.3);
+      }
+
+      /* ---------- 分层图 ---------- */
+      .layers { display: grid; gap: 12px; }
+      .layer {
+        display: grid;
+        grid-template-columns: 132px 1fr;
+        gap: 18px;
+        align-items: center;
+        border-radius: 12px;
+        padding: 14px 16px;
+        background: linear-gradient(var(--glint) 30%, transparent 18%),
+          color-mix(in oklab, var(--tint) 52%, transparent);
+        box-shadow: inset 0 1.5px 0 var(--glint), inset 0 -24px 36px -30px color-mix(in oklab, var(--tint) 60%, var(--ink));
+      }
+      .layer .tag { font-family: var(--mono); font-size: 11px; color: var(--ink-2); }
+      .layer .tag b { display: block; font-family: var(--display); font-size: 15px; letter-spacing: -0.02em; color: var(--ink); }
+      .layer .files { display: flex; flex-wrap: wrap; gap: 6px; }
+      .chip {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        padding: 3px 8px;
+        border-radius: 7px;
+        background: color-mix(in oklab, var(--glint) 78%, var(--paper));
+        border: 1px solid var(--rule);
+        white-space: nowrap;
+      }
+      .arrow-down { text-align: center; color: var(--muted); font-family: var(--mono); font-size: 13px; }
+
+      /* ---------- 目录树 ---------- */
+      .tree {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        line-height: 1.85;
+        white-space: pre;
+        overflow-x: auto;
+        color: var(--ink-2);
+      }
+      .tree .dir { color: var(--accent-deep); font-weight: 500; }
+      .tree .note { color: var(--muted); }
+
+      /* ---------- 时序 ---------- */
+      .flow { display: flex; flex-direction: column; gap: 0; }
+      .step {
+        display: grid;
+        grid-template-columns: 42px 1fr;
+        gap: 14px;
+        padding: 11px 0;
+        border-bottom: 1px dashed var(--rule);
+      }
+      .step:last-child { border-bottom: 0; }
+      .step .n {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--accent-deep);
+        padding-top: 2px;
+      }
+      .step .who {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .step p { margin: 2px 0 0; font-size: 13.5px; }
+      .step code, p code, li code {
+        font-family: var(--mono);
+        font-size: 12px;
+        background: var(--paper-2);
+        border-radius: 5px;
+        padding: 1px 5px;
+      }
+
+      /* ---------- 状态机 ---------- */
+      .machine { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+      .node {
+        font-family: var(--mono);
+        font-size: 12px;
+        border-radius: 999px;
+        padding: 7px 14px;
+        border: 1px solid var(--rule);
+        background: color-mix(in oklab, var(--glint) 70%, var(--paper));
+      }
+      .node.on { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-deep); }
+      .node.end { border-style: dashed; color: var(--muted); }
+      .machine .edge { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+      /* ---------- 表格 ---------- */
+      table { width: 100%; border-collapse: collapse; font-size: 13px; }
+      th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+      th { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 400; }
+      td code { font-family: var(--mono); font-size: 12px; color: var(--accent-deep); }
+
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+      .mini { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 0 0 6px; }
+      .card h3 { font-size: 16px; margin-bottom: 6px; }
+      .card p { margin: 0; font-size: 13px; color: var(--ink-2); }
+      .card ul { margin: 8px 0 0; padding-left: 18px; font-size: 13px; color: var(--ink-2); }
+      .card li { margin-bottom: 4px; }
+
+      .rule-line { border-top: 1px dashed var(--rule); margin: 14px 0; }
+
+      footer { margin-top: 56px; font-size: 12px; color: var(--muted); font-family: var(--mono); }
+
+      @media (max-width: 860px) {
+        .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        .layer { grid-template-columns: 1fr; gap: 8px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Campus takeaway · project map</p>
+        <h1>这个项目由什么组成，<br />以及它们怎么连起来。</h1>
+        <p class="lead">
+          一页讲清：浏览器里跑什么、接口怎么进来、业务规则放在哪、数据落到哪里，以及订单状态与金额这两条最容易被写错的链路。
+        </p>
+        <div class="stats">
+          <span class="stat">前端 <b>React 18 + TS + Tailwind + Vite</b></span>
+          <span class="stat">后端 <b>Express + TS</b></span>
+          <span class="stat">数据库 <b>SQLite（node:sqlite）</b></span>
+          <span class="stat">测试 <b>70 + 9 + 10</b></span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <!-- 1 分层 -->
+      <section>
+        <div class="section-head"><span class="idx">01</span><h2>四层结构：谁只负责什么</h2></div>
+        <p class="hint">
+          分层的意义不是图画得整齐，而是「改一处不会连带改三处」。判断标准：页面里没有金额算法，路由里没有业务判断，业务层不 import Express。
+        </p>
+
+        <div class="layers">
+          <div class="layer" style="--tint: var(--tint-a)">
+            <div class="tag"><b>页面层</b>client/src/pages</div>
+            <div class="files">
+              <span class="chip">LoginPage</span><span class="chip">HomePage</span><span class="chip">CheckoutPage</span>
+              <span class="chip">OrdersPage</span><span class="chip">OrderDetailPage</span>
+              <span class="chip">职责：编排页面、处理交互与跳转</span>
+            </div>
+          </div>
+
+          <div class="layer" style="--tint: var(--tint-c)">
+            <div class="tag"><b>状态与请求</b>client/src/{state,api}</div>
+            <div class="files">
+              <span class="chip">AuthContext（token / user）</span>
+              <span class="chip">CartContext（服务端购物车镜像）</span>
+              <span class="chip">api/client.ts（Bearer + 错误码）</span>
+              <span class="chip">职责：一次登录、一份购物车，不重复实现</span>
+            </div>
+          </div>
+
+          <div class="arrow-down">↓ HTTP /api/* · JSON · Authorization: Bearer</div>
+
+          <div class="layer" style="--tint: var(--tint-b)">
+            <div class="tag"><b>路由层</b>server/src/routes</div>
+            <div class="files">
+              <span class="chip">auth.ts</span><span class="chip">catalog.ts</span><span class="chip">cart.ts</span><span class="chip">orders.ts</span>
+              <span class="chip">职责：校验入参、装配响应，不写业务</span>
+            </div>
+          </div>
+
+          <div class="layer" style="--tint: var(--tint-b)">
+            <div class="tag"><b>业务层</b>server/src/domain</div>
+            <div class="files">
+              <span class="chip">cartService</span><span class="chip">orderService</span>
+              <span class="chip">pricing</span><span class="chip">statusMachine</span><span class="chip">catalogService</span>
+              <span class="chip">职责：金额、可售性、状态、拆单的唯一实现处</span>
+            </div>
+          </div>
+
+          <div class="arrow-down">↓ SQL（全部参数化绑定）</div>
+
+          <div class="layer" style="--tint: var(--tint-d)">
+            <div class="tag"><b>数据层</b>server/src/db</div>
+            <div class="files">
+              <span class="chip">schema.sql</span><span class="chip">connection.ts（withTransaction）</span>
+              <span class="chip">seed.ts</span><span class="chip">takeaway.db</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 目录 -->
+      <section>
+        <div class="section-head"><span class="idx">02</span><h2>仓库里到底有什么</h2></div>
+        <div class="card">
+          <div class="tree"><span class="dir">takeaway/</span>
+├── <span class="dir">SPEC.md</span>                 <span class="note">做什么 / 不做什么 / 18 条 Given-When-Then 验收标准</span>
+├── <span class="dir">PROTOTYPE_DECISIONS.md</span>   <span class="note">3 个首页方案、选定理由、DOSE 视觉方向</span>
+├── <span class="dir">ARCHITECTURE.md</span>          <span class="note">数据模型、API 契约、5 条 ADR、安全底线</span>
+├── <span class="dir">PLAN.md</span>                  <span class="note">9 个纵向切片任务（交付物 / 允许改的文件 / 验证命令）</span>
+├── <span class="dir">CODEBUDDY.md</span>             <span class="note">工具管不到的那部分约定</span>
+├── <span class="dir">REVIEW.md</span> / <span class="dir">TEST-REPORT.md</span>   <span class="note">复审结论 / 三态验收 + 证据</span>
+├── <span class="dir">client/</span>                  <span class="note">React 前端（Vite，5173，/api 代理到 5174）</span>
+│   └── src/
+│       ├── <span class="dir">pages/</span>            <span class="note">5 个页面，一个页面一个文件</span>
+│       ├── <span class="dir">components/</span>       <span class="note">TopBar / StallIndex / DishRow / CartPanel / OrderTicket / StatusTimeline</span>
+│       ├── <span class="dir">state/</span>            <span class="note">AuthContext、CartContext</span>
+│       ├── <span class="dir">api/</span>              <span class="note">client.ts（fetch 封装）、types.ts（与后端视图对象对齐）</span>
+│       └── index.css          <span class="note">DOSE token：纸底、药房绿、塑料托盘、DM Mono 标签</span>
+├── <span class="dir">server/</span>                  <span class="note">Express 后端（5174）</span>
+│   └── src/
+│       ├── app.ts             <span class="note">组装中间件与路由（测试注入 :memory: 库）</span>
+│       ├── index.ts           <span class="note">进程入口：开库、种子、监听</span>
+│       ├── config.ts          <span class="note">25 秒 / 配送费 / 阈值 —— 数值只有一个来源</span>
+│       ├── <span class="dir">domain/</span>          <span class="note">业务规则，可脱离 HTTP 单测</span>
+│       ├── <span class="dir">routes/</span>          <span class="note">4 组接口</span>
+│       ├── <span class="dir">http/</span>            <span class="note">鉴权中间件、错误出口、入参解析</span>
+│       └── <span class="dir">db/</span>              <span class="note">schema.sql / connection / seed / reset</span>
+├── <span class="dir">e2e/</span>                     <span class="note">真进程 + 真 .db 文件的 9 条端到端用例</span>
+├── <span class="dir">scripts/</span>                 <span class="note">dev.mjs（并行起前后端）、ui-check.mjs（真浏览器验证 + 截图）</span>
+└── <span class="dir">docs/</span>                    <span class="note">本页、screenshots/、test-results.txt</span></span></div>
+        </div>
+      </section>
+
+      <!-- 3 提交订单时序 -->
+      <section>
+        <div class="section-head"><span class="idx">03</span><h2>一次「提交订单」经过谁</h2></div>
+        <p class="hint">这是全项目最重的一条链路：跨档口拆单、金额重算、快照、清车，五件事在同一个事务里完成。</p>
+        <div class="card">
+          <div class="flow">
+            <div class="step"><span class="n">01</span><div><span class="who">CheckoutPage</span><p>校验地址非空（<code>≥ 5</code> 字）。不合法就直接返回，<strong>不发请求</strong> —— 这就是「地址为空不建单」的第一道防线。</p></div></div>
+            <div class="step"><span class="n">02</span><div><span class="who">api/client.ts</span><p>拼 <code>POST /api/orders</code>，带上 Bearer token。请求体里只有 <code>address</code> 与 <code>remark</code>，<strong>没有任何金额字段</strong>。</p></div></div>
+            <div class="step"><span class="n">03</span><div><span class="who">routes/orders.ts</span><p>取出字符串、调用 <code>createOrders()</code>。这一层不做判断，只搬运。</p></div></div>
+            <div class="step"><span class="n">04</span><div><span class="who">domain/orderService</span><p>读购物车（join 菜品与档口）→ 空车拒绝 → <strong>再校验一次可售状态</strong>（加购后可能被置为售罄）→ 按 <code>stall_id</code> 分组。</p></div></div>
+            <div class="step"><span class="n">05</span><div><span class="who">domain/pricing</span><p>每组算 <code>Σ(单价×数量)</code>；满 ¥20 免配送费，否则 ¥1.00。金额全程整数「分」。</p></div></div>
+            <div class="step"><span class="n">06</span><div><span class="who">db · 事务内</span><p>每组写 <code>orders</code> + <code>order_items</code>（<strong>菜名与单价快照</strong>）+ 一条 <code>order_status_logs</code>（null → paid），最后按菜品删除购物车条目。任一步失败整体回滚。</p></div></div>
+            <div class="step"><span class="n">07</span><div><span class="who">CartContext</span><p>用响应里的新购物车整体替换本地状态（不做本地累加），顶栏计数立刻归零。</p></div></div>
+            <div class="step"><span class="n">08</span><div><span class="who">CheckoutPage</span><p>渲染结果页：几笔订单、各自订单号与可取消提示。</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 状态机 -->
+      <section>
+        <div class="section-head"><span class="idx">04</span><h2>订单状态：只有一条路可走</h2></div>
+        <p class="hint">
+          状态不是「存了一个字段然后到处改」，而是由 <code>statusMachine.ts</code> 的白名单 + 时间阈值共同决定。没有人能直接把状态写成「已完成」。
+        </p>
+        <div class="card">
+          <div class="machine">
+            <span class="node on">paid 已支付</span>
+            <span class="edge">+25s →</span>
+            <span class="node">preparing 备餐中</span>
+            <span class="edge">+75s →</span>
+            <span class="node">ready 待取餐</span>
+            <span class="edge">+180s →</span>
+            <span class="node end">completed 已完成</span>
+          </div>
+          <div class="rule-line"></div>
+          <div class="machine">
+            <span class="node on">paid 已支付</span>
+            <span class="edge">25 秒内取消 →</span>
+            <span class="node end">cancelled 已取消</span>
+            <span class="edge" style="margin-left: 14px">超时取消 → 409 CANCEL_WINDOW_CLOSED</span>
+          </div>
+          <div class="rule-line"></div>
+          <div class="grid-3">
+            <div>
+              <p class="mini">怎么推进</p>
+              <p>读订单时先 <code>syncStatus()</code>：逐级判断是否到点，到了就写一行日志。逐级推进天然不可跳步。</p>
+            </div>
+            <div>
+              <p class="mini">为什么不用定时器</p>
+              <p>没有后台任务，进程重启不丢状态；时间由 <code>paid_at</code> 推导，测试可以直接改写时间做验证。</p>
+            </div>
+            <div>
+              <p class="mini">谁能改状态</p>
+              <p>只有两处：<code>syncStatus</code>（按时间）与 <code>cancelOrder</code>（用户取消），都过同一个白名单校验。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 数据模型 -->
+      <section>
+        <div class="section-head"><span class="idx">05</span><h2>数据怎么摆</h2></div>
+        <p class="hint">七张表。关键设计是 <code>order_items</code> 冗余菜名与单价——订单一旦生成，就不再受菜品改价影响。</p>
+        <div class="card">
+          <table>
+            <thead><tr><th style="width: 168px">表</th><th style="width: 210px">关键字段</th><th>和谁有关</th></tr></thead>
+            <tbody>
+              <tr><td><code>users</code></td><td><code>student_no</code>（唯一）</td><td>登录即建档；一个学生一份购物车、多笔订单</td></tr>
+              <tr><td><code>sessions</code></td><td><code>token</code></td><td>每个 token 指向一个用户，登出就删行</td></tr>
+              <tr><td><code>stalls</code></td><td><code>is_open</code>、<code>prep_minutes</code></td><td>一个档口多道菜；订单的配送费与出餐时间以档口为单位</td></tr>
+              <tr><td><code>dishes</code></td><td><code>price_cents</code>、<code>status</code></td><td><code>on_sale / sold_out / off_shelf</code> 三态决定能否加购</td></tr>
+              <tr><td><code>cart_items</code></td><td><code>(user_id, dish_id)</code> 唯一</td><td>只存「谁要几份」；金额每次读时现算，不落库</td></tr>
+              <tr><td><code>orders</code></td><td><code>stall_id</code>、<code>total_cents</code>、<code>cancel_deadline</code></td><td>一单一个档口；跨店下单会产生多行</td></tr>
+              <tr><td><code>order_items</code></td><td><code>name_snapshot</code>、<code>price_cents_snapshot</code></td><td><strong>快照</strong>：菜改名改价都不影响历史订单</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 6 金额链路 -->
+      <section>
+        <div class="section-head"><span class="idx">06</span><h2>金额只有一个算法，且不在浏览器里</h2></div>
+        <div class="grid-3">
+          <div class="card">
+            <p class="mini">加购时</p>
+            <h3>不算钱，只算份数</h3>
+            <p>购物车只存 <code>qty</code>。前端显示的金额来自接口每次现算的结果。</p>
+          </div>
+          <div class="card">
+            <p class="mini">提交时</p>
+            <h3>服务端重算</h3>
+            <p>按 <code>dishes.price_cents × qty</code> 求和，再按档口加配送费。<code>totalCents</code> 若出现在请求体里会被直接忽略。</p>
+          </div>
+          <div class="card">
+            <p class="mini">展示时</p>
+            <h3>只做格式化</h3>
+            <p><code>yuan(cents)</code> 是唯一的展示入口，避免各页面各写一套四舍五入。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 文件索引 -->
+      <section>
+        <div class="section-head"><span class="idx">07</span><h2>想改某件事，该打开哪个文件</h2></div>
+        <div class="card">
+          <table>
+            <thead><tr><th style="width: 320px">我要改……</th><th>打开</th></tr></thead>
+            <tbody>
+              <tr><td>取消窗口 25 秒 / 配送费 / 满减阈值</td><td><code>server/src/config.ts</code>（改一处即可）</td></tr>
+              <tr><td>订单允不允许跳步</td><td><code>server/src/domain/statusMachine.ts</code> 的 <code>NEXT_STATUS</code></td></tr>
+              <tr><td>拆单规则（按档口 or 合并一单）</td><td><code>server/src/domain/orderService.ts</code> 的 <code>createOrders</code></td></tr>
+              <tr><td>售罄能不能加购</td><td><code>server/src/domain/cartService.ts</code> 的 <code>addItem</code></td></tr>
+              <tr><td>首页三栏布局</td><td><code>client/src/pages/HomePage.tsx</code> + <code>components/StallIndex / CartPanel</code></td></tr>
+              <tr><td>配色、圆角、纸纹、塑料质感</td><td><code>client/src/index.css</code> + <code>client/tailwind.config.js</code></td></tr>
+              <tr><td>接口签名</td><td><code>ARCHITECTURE.md</code> 第 4 节（先改契约，再改两端）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 8 验收映射 -->
+      <section>
+        <div class="section-head"><span class="idx">08</span><h2>每条验收标准落在哪</h2></div>
+        <div class="grid-2">
+          <div class="card">
+            <p class="mini">单元 · 6 + 13 + 11 = 30 条</p>
+            <h3>规则本身</h3>
+            <ul>
+              <li><code>unit.pricing</code>：配送费边界、整数分</li>
+              <li><code>unit.statusMachine</code>：白名单、时间阈值、取消窗口</li>
+              <li><code>unit.cart</code>：可售校验、跨店分组、数量归零</li>
+            </ul>
+          </div>
+          <div class="card">
+            <p class="mini">集成 · 11 + 20 = 31 条</p>
+            <h3>真实 HTTP + 真实 SQLite</h3>
+            <ul>
+              <li><code>integration.auth</code>：登录、目录、404</li>
+              <li><code>integration.orders</code>：拆单、重算、快照、清车、越权、超时</li>
+            </ul>
+          </div>
+          <div class="card">
+            <p class="mini">端到端 · 9 条</p>
+            <h3>真进程 + 真文件库</h3>
+            <ul>
+              <li>加购 → 提交 → 查看 → 取消</li>
+              <li>最后一步直接读 <code>.db</code> 核对落库</li>
+            </ul>
+          </div>
+          <div class="card">
+            <p class="mini">界面 · 10 条</p>
+            <h3>真实浏览器</h3>
+            <ul>
+              <li>售罄按钮禁用、顶栏计数</li>
+              <li>地址为空时 <strong>网络层确认 0 次请求</strong></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        SPEC.md → PROTOTYPE_DECISIONS.md → ARCHITECTURE.md → PLAN.md → 代码 → REVIEW.md → TEST-REPORT.md
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+﻿
+ RUN  v2.1.9 C:/Users/28732/Desktop/Harness工程/99305fc5463d58c5cfce67e0d60cb61d/full-stack/takeaway
+
+node.exe : (node:22636) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+所在位置 行:1 字符: 1
++ & "C:\Users\28732\.workbuddy\binaries\node\versions\22.22.2-6/node.ex ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ((node:22636) Ex...nge at any time:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17468) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ server/tests/unit.pricing.test.ts > pricing · 配送费与总额（SPEC R5 / AC-06） > 单档口未满 ¥20 收 ¥1.00 配送费
+ ✓ server/tests/unit.pricing.test.ts > pricing · 配送费与总额（SPEC R5 / AC-06） > 单档口满 ¥20 免配送费
+ ✓ server/tests/unit.pricing.test.ts > pricing · 配送费与总额（SPEC R5 / AC-06） > 恰好等于阈值时免配送费（边界用 >= 而非 >）
+ ✓ server/tests/unit.pricing.test.ts > pricing · 配送费与总额（SPEC R5 / AC-06） > 空车不产生配送费
+ ✓ server/tests/unit.pricing.test.ts > pricing · 配送费与总额（SPEC R5 / AC-06） > 整数「分」相加不产生浮点误差
+ ✓ server/tests/unit.pricing.test.ts > pricing · 配送费与总额（SPEC R5 / AC-06） > 取消窗口常量为 25 秒（SPEC R8）
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 不可跳步与不可逆向（SPEC R7 / AC-12） > 白名单只允许 paid → preparing → ready → completed
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 不可跳步与不可逆向（SPEC R7 / AC-12） > 跳步流转被拒绝（paid → ready）
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 不可跳步与不可逆向（SPEC R7 / AC-12） > 逆向流转被拒绝（ready → preparing）
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 不可跳步与不可逆向（SPEC R7 / AC-12） > 已取消的订单不能再流转
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 读时收敛的时间阈值（AC-11） > 未到 25 秒保持 paid
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 读时收敛的时间阈值（AC-11） > 到 25 秒推进到 preparing，且时间戳落在阈值上
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 读时收敛的时间阈值（AC-11） > 一次只推进一级：paid 在第 200 秒只返回 preparing
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 读时收敛的时间阈值（AC-11） > preparing → ready → completed 各自按里程碑推进
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 读时收敛的时间阈值（AC-11） > 终态不再推进
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 25 秒取消窗口（AC-13 / AC-14） > 第 24 秒仍可取消
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 25 秒取消窗口（AC-13 / AC-14） > 第 25 秒起不可取消（窗口与备餐开始不重叠）
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 25 秒取消窗口（AC-13 / AC-14） > 已进入备餐中不可取消
+ ✓ server/tests/unit.statusMachine.test.ts > statusMachine · 25 秒取消窗口（AC-13 / AC-14） > 剩余时间不会被算成负数
+ ✓ server/tests/unit.cart.test.ts > cartService · 可售校验（SPEC R2 / AC-01、AC-02） > 已售罄菜品不可加购，返回 DISH_NOT_AVAILABLE 且购物车不变
+ ✓ server/tests/unit.cart.test.ts > cartService · 可售校验（SPEC R2 / AC-01、AC-02） > 已下架菜品不可加购
+ ✓ server/tests/unit.cart.test.ts > cartService · 可售校验（SPEC R2 / AC-01、AC-02） > 不存在的菜品返回 DISH_NOT_FOUND
+ ✓ server/tests/unit.cart.test.ts > cartService · 可售校验（SPEC R2 / AC-01、AC-02） > 数量必须为正整数
+ ✓ server/tests/unit.cart.test.ts > cartService · 跨档口购物车（SPEC R3 / AC-03） > 两家档口的菜品同时存在并按档口分组
+ ✓ server/tests/unit.cart.test.ts > cartService · 跨档口购物车（SPEC R3 / AC-03） > 分组小计按档口分别计算配送费
+ ✓ server/tests/unit.cart.test.ts > cartService · 跨档口购物车（SPEC R3 / AC-03） > 重复加购同一菜品累加数量
+ ✓ server/tests/unit.cart.test.ts > cartService · 跨档口购物车（SPEC R3 / AC-03） > 数量改到 0 等于移除（AC-04）
+ ✓ server/tests/unit.cart.test.ts > cartService · 跨档口购物车（SPEC R3 / AC-03） > 移除不存在的条目返回 CART_ITEM_NOT_FOUND
+ ✓ server/tests/unit.cart.test.ts > cartService · 跨档口购物车（SPEC R3 / AC-03） > 加购后菜品变为售罄时，购物车把它标记为不可售且不计入金额
+ ✓ server/tests/unit.cart.test.ts > cartService · 跨档口购物车（SPEC R3 / AC-03） > 不同用户的购物车互不影响
+(node:36700) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3396) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ server/tests/integration.auth.test.ts > 登录（SPEC Non-Goals 第 6 条：只校验学号） > 已存在的学号登录成功并返回 token
+ ✓ server/tests/integration.auth.test.ts > 登录（SPEC Non-Goals 第 6 条：只校验学号） > 新学号自动建档，姓名缺省为「同学 + 后四位」
+ ✓ server/tests/integration.auth.test.ts > 登录（SPEC Non-Goals 第 6 条：只校验学号） > 学号格式非法返回 INVALID_STUDENT_NO
+ ✓ server/tests/integration.auth.test.ts > 登录（SPEC Non-Goals 第 6 条：只校验学号） > /auth/me 需要 token
+ ✓ server/tests/integration.auth.test.ts > 登录（SPEC Non-Goals 第 6 条：只校验学号） > 登出后 token 失效
+ ✓ server/tests/integration.auth.test.ts > 目录（SPEC R1） > 档口列表包含 6 家档口与统计字段
+ ✓ server/tests/integration.auth.test.ts > 目录（SPEC R1） > 关键字可以命中菜品名（找菜）
+ ✓ server/tests/integration.auth.test.ts > 目录（SPEC R1） > filter=hasSoldOut 只返回有售罄菜品的档口
+ ✓ server/tests/integration.auth.test.ts > 目录（SPEC R1） > 档口详情返回菜品与可售标记
+ ✓ server/tests/integration.auth.test.ts > 目录（SPEC R1） > 不存在的档口返回 404
+ ✓ server/tests/integration.auth.test.ts > 目录（SPEC R1） > 未知接口返回 JSON 404 而不是 HTML
+ ✓ server/tests/integration.orders.test.ts > 提交订单 · 地址校验（SPEC AC-05 / 界面 AC-18 的接口侧） > 地址只有空白字符时返回 400，不创建订单，购物车保留
+ ✓ server/tests/integration.orders.test.ts > 提交订单 · 地址校验（SPEC AC-05 / 界面 AC-18 的接口侧） > 地址不足 5 个字同样被拒绝
+ ✓ server/tests/integration.orders.test.ts > 提交订单 · 地址校验（SPEC AC-05 / 界面 AC-18 的接口侧） > 空车提交返回 CART_EMPTY
+ ✓ server/tests/integration.orders.test.ts > 提交订单 · 跨档口拆单与服务端重算（SPEC AC-06） > 两家档口拆成两笔订单，配送费按档口分别计算
+ ✓ server/tests/integration.orders.test.ts > 提交订单 · 跨档口拆单与服务端重算（SPEC AC-06） > 每一笔订单都以「已支付」开始，并留下状态日志
+ ✓ server/tests/integration.orders.test.ts > 提交订单 · 跨档口拆单与服务端重算（SPEC AC-06） > 订单表与明细表真实落库，总额等于明细重算值（集成断言）
+ ✓ server/tests/integration.orders.test.ts > 提交订单 · 金额与快照不可被客户端左右（SPEC AC-07 / AC-08） > 请求体里的 totalCents 被忽略
+ ✓ server/tests/integration.orders.test.ts > 提交订单 · 金额与快照不可被客户端左右（SPEC AC-07 / AC-08） > 下单后改菜品价格，历史订单仍按快照显示
+ ✓ server/tests/integration.orders.test.ts > 提交订单 · 下单瞬间的二次可售校验（SPEC AC-09） > 加购后菜品被置为售罄时整单被拒绝，且不产生订单
+ ✓ server/tests/integration.orders.test.ts > 提交订单 · 下单后清车（SPEC AC-10） > 已下单的菜品从购物车移除，未下单的保留
+ ✓ server/tests/integration.orders.test.ts > 订单状态 · 读时收敛与日志幂等（SPEC AC-11 / AC-12） > 25 秒后查询推进到备餐中，且只写一条日志
+ ✓ server/tests/integration.orders.test.ts > 订单状态 · 读时收敛与日志幂等（SPEC AC-11 / AC-12） > 列表接口同样会推进状态（不存在无人访问就永远停住的分支）
+ ✓ server/tests/integration.orders.test.ts > 取消订单 · 25 秒窗口（SPEC AC-13 / AC-14） > 窗口内取消成功并写入 cancelled_at
+ ✓ server/tests/integration.orders.test.ts > 取消订单 · 25 秒窗口（SPEC AC-13 / AC-14） > 超过 25 秒取消被拒绝，状态保持备餐中
+ ✓ server/tests/integration.orders.test.ts > 取消订单 · 25 秒窗口（SPEC AC-13 / AC-14） > 已取消的订单不能再次取消
+ ✓ server/tests/integration.orders.test.ts > 订单状态 · 不存在让客户端指定目标状态的入口（SPEC AC-12） > 任何试图直接改状态的请求都落到 404（接口层不存在该能力）
+ ✓ server/tests/integration.orders.test.ts > 订单归属（SPEC AC-15 / AC-16） > 查看他人订单返回 403 FORBIDDEN_ORDER
+ ✓ server/tests/integration.orders.test.ts > 订单归属（SPEC AC-15 / AC-16） > 取消他人订单返回 403，且订单状态不变
+ ✓ server/tests/integration.orders.test.ts > 订单归属（SPEC AC-15 / AC-16） > 未携带 token 访问购物车与订单返回 401
+ ✓ server/tests/integration.orders.test.ts > 订单归属（SPEC AC-15 / AC-16） > 订单列表只包含本人订单
+ ✓ e2e/full-flow.test.ts > E2E · 跨店加购 → 提交订单 → 查看订单 → 取消（真实进程 + 真实 SQLite 文件） > 登录后能读到档口列表
+ ✓ e2e/full-flow.test.ts > E2E · 跨店加购 → 提交订单 → 查看订单 → 取消（真实进程 + 真实 SQLite 文件） > 跨两家档口加购，购物车可读回分组
+ ✓ e2e/full-flow.test.ts > E2E · 跨店加购 → 提交订单 → 查看订单 → 取消（真实进程 + 真实 SQLite 文件） > 售罄菜品加购被服务端拒绝
+ ✓ e2e/full-flow.test.ts > E2E · 跨店加购 → 提交订单 → 查看订单 → 取消（真实进程 + 真实 SQLite 文件） > 提交订单生成两笔按档口拆分的订单
+ ✓ e2e/full-flow.test.ts > E2E · 跨店加购 → 提交订单 → 查看订单 → 取消（真实进程 + 真实 SQLite 文件） > 订单列表能查到刚下的两单，购物车已清空
+ ✓ e2e/full-flow.test.ts > E2E · 跨店加购 → 提交订单 → 查看订单 → 取消（真实进程 + 真实 SQLite 文件） > 订单详情带状态时间线与价格快照
+ ✓ e2e/full-flow.test.ts > E2E · 跨店加购 → 提交订单 → 查看订单 → 取消（真实进程 + 真实 SQLite 文件） > 他人无法查看这笔订单
+ ✓ e2e/full-flow.test.ts > E2E · 跨店加购 → 提交订单 → 查看订单 → 取消（真实进程 + 真实 SQLite 文件） > 窗口内取消成功，另一单不受影响
+ ✓ e2e/full-flow.test.ts > E2E · 跨店加购 → 提交订单 → 查看订单 → 取消（真实进程 + 真实 SQLite 文件） > 数据库文件里确实写入订单、明细与状态日志
+
+ Test Files  6 passed (6)
+      Tests  70 passed (70)
+   Start at  15:27:40
+   Duration  2.70s (transform 461ms, setup 0ms, collect 1.49s, tests 1.34s, environment 1ms, prepare 1.17s)
+

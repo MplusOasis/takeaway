@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.DS_Store
+
+# 日志
+*.log
+
+# SQLite 数据库（含 WAL/SHM 临时文件），任何层级都不提交
+*.db
+*.db-shm
+*.db-wal
+
+coverage/
+.vite/
+
+# AI 工具缓存与内置 skills：不属于项目产物，不提交
+.codebuddy/
